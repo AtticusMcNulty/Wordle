@@ -1,4 +1,4 @@
 [[redirects]]
 from = "/*"
-to = "/views/layouts.main.handlebars"
+to = "/views/layouts/main.handlebars"
 status = 200
