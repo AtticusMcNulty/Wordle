@@ -12,7 +12,7 @@ app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
 const mongoDBUrl =
-  "mongodb+srv://group3:o6HTVkMfSUU9t6OD@wordle290.coha0r5.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://awmcnulty:e5rJm0K6RwuSWV5J@atdatabase.44bex3g.mongodb.net/?retryWrites=true&w=majority";
 mongoose
   .connect(mongoDBUrl, {
     useNewUrlParser: true,

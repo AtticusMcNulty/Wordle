@@ -148,19 +148,25 @@ function saveWordleData(wordleData) {
 }
 
 function updateStatsAndShowModal(isWin) {
-  fetch('/stats')
-    .then(response => response.json())
-    .then(data => {
+  fetch("/stats")
+    .then((response) => response.json())
+    .then((data) => {
       if (isWin) {
-        document.getElementById('winningModal').style.display = 'block';
-        document.getElementById('dynamicTotalWins').textContent = `Total Wins: ${data.wins}`;
+        document.getElementById("winningModal").style.display = "block";
+        document.getElementById(
+          "dynamicTotalWins"
+        ).textContent = `Total Wins: ${data.wins}`;
       } else {
-          document.getElementById('losingModal').style.display = 'block';
-          document.getElementById('dynamicWordleWord').textContent = `The correct word was: ${data.wordleWord}`
-          document.getElementById('dynamicTotalLosses').textContent = `Number of Losses: ${data.losses}`;
+        document.getElementById("losingModal").style.display = "block";
+        document.getElementById(
+          "dynamicWordleWord"
+        ).textContent = `The correct word was: ${data.wordleWord}`;
+        document.getElementById(
+          "dynamicTotalLosses"
+        ).textContent = `Number of Losses: ${data.losses}`;
       }
     })
-    .catch(error => console.error('Error fetching stats: ', error));
+    .catch((error) => console.error("Error fetching stats: ", error));
 }
 
 async function enterButtonClickListener() {
@@ -171,14 +177,6 @@ async function enterButtonClickListener() {
     // if the guessed word is not in the wordle dictionary
     alert("Word not in game dictionary");
   } else {
-
-    // const wordleData = {
-    //   wordleWord: wordleWord,
-    //   guesses: guessArr,
-    // };
-    // saveWordleData(wordleData);
-
-
     // guess works, change colors
     const row = guessArr.length + 1;
 
@@ -247,7 +245,7 @@ async function enterButtonClickListener() {
         await saveWordleData(wordleData);
         updateStatsAndShowModal(true);
       } catch (error) {
-        console.error('Error in saving game data:', error);
+        console.error("Error in saving game data:", error);
       }
 
       restart();
@@ -263,8 +261,8 @@ async function enterButtonClickListener() {
         await saveWordleData(wordleData);
         updateStatsAndShowModal(false);
       } catch (error) {
-        console.error('Error in saving game data:', error);
-      };
+        console.error("Error in saving game data:", error);
+      }
 
       restart();
     } else {
@@ -281,26 +279,33 @@ async function enterButtonClickListener() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-// Event listeners for closing modals
-document.getElementById("closeWinningModal").addEventListener("click", function () {
-  document.getElementById("winningModal").style.display = "none";
-});
-document.getElementById("closeLosingModal").addEventListener("click", function () {
-  document.getElementById("losingModal").style.display = "none";
-});
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Event listeners for closing modals
+  document
+    .getElementById("closeWinningModal")
+    .addEventListener("click", function () {
+      document.getElementById("winningModal").style.display = "none";
+    });
+  document
+    .getElementById("closeLosingModal")
+    .addEventListener("click", function () {
+      document.getElementById("losingModal").style.display = "none";
+    });
 
-// Event listeners for restart buttons inside modals
-document.getElementById("restartWinningButton").addEventListener("click", function () {
-  document.getElementById("winningModal").style.display = "none";
-  // Additional restart logic if needed
+  // Event listeners for restart buttons inside modals
+  document
+    .getElementById("restartWinningButton")
+    .addEventListener("click", function () {
+      document.getElementById("winningModal").style.display = "none";
+      // Additional restart logic if needed
+    });
+  document
+    .getElementById("restartLosingButton")
+    .addEventListener("click", function () {
+      document.getElementById("losingModal").style.display = "none";
+      // Additional restart logic if needed
+    });
 });
-document.getElementById("restartLosingButton").addEventListener("click", function () {
-  document.getElementById("losingModal").style.display = "none";
-  // Additional restart logic if needed
-});
-});
-
 
 function letterKeyClickListener(event) {
   keyPressed = event.target.textContent;
@@ -379,10 +384,10 @@ function saveWordleData(wordleData) {
     },
     body: JSON.stringify(wordleData),
   })
-  .then((response) => response.text())
-  .then((data) => {
-    console.log("Data saved: ", data);
-    updateStatsAndShowModal(wordleData.gameOutcome === "Won");
-  })
-  .catch((error) => console.error("Error saving data: ", error));
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Data saved: ", data);
+      updateStatsAndShowModal(wordleData.gameOutcome === "Won");
+    })
+    .catch((error) => console.error("Error saving data: ", error));
 }
